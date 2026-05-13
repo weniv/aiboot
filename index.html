@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 부트캠프 in 제주 · 2026 여름, 자연어로 진짜 서비스 만들기</title>
+  <meta name="description" content="전공 상관없이, 코딩 안 해봤어도 OK. 제주 바닷가에서 자연어 한 줄로 진짜 서비스를 만드는 제주발 AI 부트캠프. 초급 6일 + 중급 3주, 학점·장학금·해외·인턴까지." />
+  <meta property="og:title" content="AI 부트캠프 in 제주 — 코딩 한 줄 못 짜도 OK" />
+  <meta property="og:description" content="2026 여름, 제주에서. 자연어로 AI가 코드를 짜는 시대 · 초급 6일 + 중급 3주 · 최대 100만원 장학금" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="./web_style/favicon.ico" />
+  <link rel="stylesheet" href="./web_style/index.css" />
+  <link rel="stylesheet" href="./landing.css" />
+
+  <!-- Three.js (ES module) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- =============== HEADER =============== -->
+  <header class="lp-header">
+    <div class="max-width lp-header__inner">
+      <a href="#top" class="lp-logo" aria-label="AI 부트캠프 in 제주">
+        <span class="lp-logo__mark">AI</span>
+        <span>BOOTCAMP <em class="lp-logo__sub">in JEJU</em></span>
+      </a>
+
+      <nav class="lp-nav" aria-label="페이지 내 이동">
+        <a href="#why">왜 제주</a>
+        <a href="#industries">전공 × 산업</a>
+        <a href="#compare">과정 비교</a>
+        <a href="#curriculum">커리큘럼</a>
+        <a href="#benefits">혜택</a>
+        <a href="#apply">신청</a>
+      </nav>
+
+      <div class="lp-header__cta">
+        <a href="#apply" class="btn btn--small btn--primary">지금 신청하기</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="contents">
+
+    <!-- =============== HERO =============== -->
+    <section class="lp-hero">
+      <div class="lp-hero__aurora" aria-hidden="true"></div>
+      <div class="max-width lp-hero__inner">
+        <div class="lp-hero__copy">
+          <span class="lp-hero__badge">2026 여름 · 제주대학교 첨단산업 인재양성 부트캠프</span>
+
+          <h1 class="lp-hero__title">
+            말 한마디로<br />
+            <span class="lp-hl">AI가 코딩하는 시대</span><br />
+            <span class="lp-hero__title-sub">제주 바닷가에서, 운전하듯 만들어봐.</span>
+          </h1>
+
+          <p class="lp-hero__desc">
+            전공 상관없이, 코딩 안 해봤어도 OK.<br />
+            <strong>자연어 한 줄로 내 아이디어를 진짜 서비스로</strong> 만드는<br />
+            제주발 AI 부트캠프.
+          </p>
+
+          <div class="lp-hero__ctas">
+            <a href="#apply" class="btn btn--medium btn--primary">지금 신청하기</a>
+            <a href="#compare" class="btn btn--medium btn--outline">과정 비교 보기</a>
+          </div>
+
+          <dl class="lp-hero__meta">
+            <div class="lp-hero__meta-item">
+              <span class="lp-num">0<small>원</small></span>
+              <span class="lp-lab">수강료 전액 지원</span>
+            </div>
+            <div class="lp-hero__meta-item">
+              <span class="lp-num">100<small>만원</small></span>
+              <span class="lp-lab">최대 이수 장학금</span>
+            </div>
+            <div class="lp-hero__meta-item">
+              <span class="lp-num">4<small>학점</small></span>
+              <span class="lp-lab">초급 1 + 중급 3</span>
+            </div>
+            <div class="lp-hero__meta-item">
+              <span class="lp-num">25<small>명</small></span>
+              <span class="lp-lab">해외 학술대회·해커톤</span>
+            </div>
+          </dl>
+        </div>
+
+        <!-- 인터랙티브 3D — 제주 행성 -->
+        <div class="lp-hero__visual" aria-hidden="true">
+          <canvas id="hero-canvas"></canvas>
+          <div class="lp-hero__zoom" role="group" aria-label="행성 확대 / 축소">
+            <button type="button" class="lp-hero__zoom-btn" data-zoom="in" aria-label="확대">+</button>
+            <button type="button" class="lp-hero__zoom-btn" data-zoom="out" aria-label="축소">−</button>
+          </div>
+          <span class="lp-hero__hint">DRAG · SCROLL TO EXPLORE</span>
+        </div>
+      </div>
+
+      <div class="lp-hero__tape" aria-hidden="true">
+        <div class="lp-hero__tape-track">
+          <span class="lp-hero__tape-item"># CODE_WITH_VIBES</span>
+          <span class="lp-hero__tape-item">Claude Code</span>
+          <span class="lp-hero__tape-item">GitHub Copilot</span>
+          <span class="lp-hero__tape-item">Google Antigravity</span>
+          <span class="lp-hero__tape-item">Gemini CLI</span>
+          <span class="lp-hero__tape-item"># VIBE_CODING</span>
+          <span class="lp-hero__tape-item">PyTorch · CNN · RNN</span>
+          <span class="lp-hero__tape-item">NLP · LLM</span>
+          <span class="lp-hero__tape-item">JEJU × AI</span>
+          <span class="lp-hero__tape-item" aria-hidden="true"># CODE_WITH_VIBES</span>
+          <span class="lp-hero__tape-item" aria-hidden="true">Claude Code</span>
+          <span class="lp-hero__tape-item" aria-hidden="true">GitHub Copilot</span>
+          <span class="lp-hero__tape-item" aria-hidden="true">Google Antigravity</span>
+          <span class="lp-hero__tape-item" aria-hidden="true">Gemini CLI</span>
+          <span class="lp-hero__tape-item" aria-hidden="true"># VIBE_CODING</span>
+          <span class="lp-hero__tape-item" aria-hidden="true">PyTorch · CNN · RNN</span>
+          <span class="lp-hero__tape-item" aria-hidden="true">NLP · LLM</span>
+          <span class="lp-hero__tape-item" aria-hidden="true">JEJU × AI</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== WHY =============== -->
+    <section id="why" class="lp-section">
+      <div class="max-width">
+        <div class="lp-section__head">
+          <span class="lp-eyebrow">Why Now, Why Jeju</span>
+          <h2 class="lp-section__title">왜 지금, <span class="txt-highlight">제주</span>에서?</h2>
+          <p class="lp-section__desc">
+            한 여름이면 충분합니다. 학점도, 장학금도, 해외도, 커리어도 — 부담은 0원, 가져갈 건 손에 쥐고 갑니다.
+          </p>
+        </div>
+
+        <div class="lp-why">
+          <article class="lp-why__card lp-why__card--money">
+            <div class="lp-why__emoji">💸</div>
+            <h3>0원 부담, 최대 100만원 장학금</h3>
+            <p><strong>수강료 전액 지원</strong>은 기본. 이수하면 <strong>장학금 최대 100만원</strong>까지. 학기 중 알바 대신, 여름 한 달이면 충분합니다.</p>
+            <span class="lp-why__pill">FREE + CASH</span>
+          </article>
+
+          <article class="lp-why__card lp-why__card--credit">
+            <div class="lp-why__emoji">🎓</div>
+            <h3>노는 게 아니라, 학점 따는 여름</h3>
+            <p>계절학기 정규 학점으로 인정 — <strong>초급 1학점 / 중급 3학점</strong>. 졸업 학점도 챙기고, 포트폴리오도 챙기는 일석이조.</p>
+            <span class="lp-why__pill">CREDIT</span>
+          </article>
+
+          <article class="lp-why__card lp-why__card--global">
+            <div class="lp-why__emoji">🌏</div>
+            <h3>미국·싱가포르·필리핀, 해외로 직진</h3>
+            <p>이수자에게는 <strong>해외 학술대회·해커톤 우선 선발권</strong>이 주어집니다.</p>
+            <ul class="lp-why__flags">
+              <li><span class="flag">🇺🇸</span> 미국 <strong>5명</strong></li>
+              <li><span class="flag">🇸🇬</span> 싱가포르 <strong>10명</strong></li>
+              <li><span class="flag">🇵🇭</span> 필리핀 <strong>10명</strong></li>
+            </ul>
+          </article>
+
+          <article class="lp-why__card lp-why__card--career">
+            <div class="lp-why__emoji">💼</div>
+            <h3>서울·제주 유망 기업, 바로 연결</h3>
+            <p>서울 기업 탐방 + <strong>인턴십 기회 + 채용 우대</strong>. 제주에 살아도 커리어는 전국구로.</p>
+            <span class="lp-why__pill">CAREER</span>
+          </article>
+
+          <article class="lp-why__card lp-why__card--stay">
+            <div class="lp-why__emoji">🛏️</div>
+            <h3>기숙사 지원 (희망자)</h3>
+            <p>타지에서 오는 친구들, 또는 부트캠프 기간 동안 몰입하고 싶은 친구들 위해 <strong>학생생활관(기숙사) 지원</strong>. <em>희망자는 사전 신청 필수.</em></p>
+            <span class="lp-why__pill">STAY</span>
+          </article>
+
+          <article class="lp-why__card lp-why__card--ocean">
+            <div class="lp-why__emoji">🌊</div>
+            <h3>바닷가 워케이션 공간 (중급)</h3>
+            <p>중급 과정은 제주대 아라캠퍼스 + <strong>바닷가 디지털 노마드 공간</strong>에서 운영. 노트북 들고 파도 소리 들으며 코딩하는 여름.</p>
+            <span class="lp-why__pill">WORKATION</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== VIBE CODING =============== -->
+    <section class="lp-vibe">
+      <div class="max-width lp-vibe__inner">
+        <div class="lp-vibe__copy">
+          <span class="lp-eyebrow">Vibe Coding</span>
+          <h2 class="lp-section__title lp-section__title--light">
+            🚗 운전하듯 쉽게,<br />
+            <span class="txt-highlight-light">바이브 코딩</span>
+          </h2>
+          <p class="lp-vibe__desc">
+            자연어로 시키면 AI가 코드를 짭니다.<br />
+            메인 도구는 <strong>Claude Code</strong>, <br/>
+            <strong>GitHub Copilot · Google Antigravity · Gemini CLI</strong> 까지<br />
+            — 비전공자도 진짜 돌아가는 서비스를 만들어요.
+          </p>
+          <blockquote class="lp-vibe__quote">
+            "코딩 한 줄도 못 짜는데 앱 만들 수 있어요?"<br />
+            <strong>→ 네, 만들 수 있어요.</strong>
+          </blockquote>
+        </div>
+        <div class="lp-vibe__tools">
+          <div class="lp-vibe__tool lp-vibe__tool--main">
+            <span class="lp-vibe__tool-badge">MAIN</span>
+            <span>🧠</span><strong>Claude Code</strong><small>Anthropic</small>
+          </div>
+          <div class="lp-vibe__tool"><span>🐙</span><strong>GitHub Copilot</strong><small>Microsoft</small></div>
+          <div class="lp-vibe__tool"><span>🌐</span><strong>Antigravity</strong><small>Google</small></div>
+          <div class="lp-vibe__tool"><span>💎</span><strong>Gemini CLI</strong><small>Google</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== INDUSTRIES × MAJORS =============== -->
+    <section id="industries" class="lp-section">
+      <div class="max-width">
+        <div class="lp-section__head">
+          <span class="lp-eyebrow">JEJU 6 KEY INDUSTRIES × YOUR MAJOR</span>
+          <h2 class="lp-section__title">내 전공은 <span class="txt-highlight">제주 어느 산업</span>과 만날까?</h2>
+          <p class="lp-section__desc">
+            전공이 무엇이든, <strong>제주에는 풀어야 할 문제가 있습니다.</strong>
+            아래 표에 없는 전공도 모두 환영합니다.
+          </p>
+        </div>
+
+        <div class="lp-industry-grid">
+          <article class="lp-industry lp-industry--01">
+            <span class="lp-industry__num">01</span>
+            <div class="lp-industry__emoji">🏝️</div>
+            <h3>관광</h3>
+            <p class="lp-industry__majors">관광경영 · 외국어 · 사학 · 경영 · 미디어</p>
+            <div class="lp-industry__project">
+              <span class="lp-industry__pjlabel">PROJECT IDEA</span>
+              <p>사진 한 장 찍으면 명소를 <strong>다국어로 해설</strong>해주는 AI 가이드 챗봇</p>
+            </div>
+          </article>
+
+          <article class="lp-industry lp-industry--02">
+            <span class="lp-industry__num">02</span>
+            <div class="lp-industry__emoji">⚡</div>
+            <h3>신재생에너지</h3>
+            <p class="lp-industry__majors">전기·전자 · 에너지 · 환경 · 정책</p>
+            <div class="lp-industry__project">
+              <span class="lp-industry__pjlabel">PROJECT IDEA</span>
+              <p>날씨 데이터로 내일의 <strong>태양광·풍력 발전량 예측</strong> 서비스</p>
+            </div>
+          </article>
+
+          <article class="lp-industry lp-industry--03">
+            <span class="lp-industry__num">03</span>
+            <div class="lp-industry__emoji">🧴</div>
+            <h3>청정바이오</h3>
+            <p class="lp-industry__majors">생명 · 화학 · 식품 · 마케팅 · 디자인</p>
+            <div class="lp-industry__project">
+              <span class="lp-industry__pjlabel">PROJECT IDEA</span>
+              <p>피부 사진 분석 → <strong>제주 천연 원료 화장품 맞춤 추천</strong> 앱</p>
+            </div>
+          </article>
+
+          <article class="lp-industry lp-industry--04">
+            <span class="lp-industry__num">04</span>
+            <div class="lp-industry__emoji">🚗</div>
+            <h3>스마트 모빌리티</h3>
+            <p class="lp-industry__majors">컴퓨터 · 기계·로봇 · 산업디자인 · 도시·교통</p>
+            <div class="lp-industry__project">
+              <span class="lp-industry__pjlabel">PROJECT IDEA</span>
+              <p>전기차 운전자용 <strong>충전소 대기시간·경로 내비</strong></p>
+            </div>
+          </article>
+
+          <article class="lp-industry lp-industry--05">
+            <span class="lp-industry__num">05</span>
+            <div class="lp-industry__emoji">🍊</div>
+            <h3>스마트 농수산</h3>
+            <p class="lp-industry__majors">농생명 · 해양수산 · IoT · 농업경제</p>
+            <div class="lp-industry__project">
+              <span class="lp-industry__pjlabel">PROJECT IDEA</span>
+              <p>감귤 잎 사진 한 장으로 <strong>병해충 진단·처방</strong> 앱</p>
+            </div>
+          </article>
+
+          <article class="lp-industry lp-industry--06">
+            <span class="lp-industry__num">06</span>
+            <div class="lp-industry__emoji">🎬</div>
+            <h3>디지털 융합</h3>
+            <p class="lp-industry__majors">SW · 미디어·영상 · 음악·문창 · 디자인</p>
+            <div class="lp-industry__project">
+              <span class="lp-industry__pjlabel">PROJECT IDEA</span>
+              <p>제주 풍경·전설 입력 → <strong>숏폼 영상·BGM 자동 생성</strong> 도구</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== COURSE COMPARE =============== -->
+    <section id="compare" class="lp-section lp-section--gray">
+      <div class="max-width">
+        <div class="lp-section__head">
+          <span class="lp-eyebrow">2 Tracks</span>
+          <h2 class="lp-section__title">🪜 과정 한눈에 <span class="txt-highlight">비교</span></h2>
+          <p class="lp-section__desc">
+            🔁 <strong>초급 → 중급 연계 이수 추천</strong> — 한 여름에 입문부터 실전까지 완주하세요.
+          </p>
+        </div>
+
+        <div class="lp-compare">
+          <article class="lp-compare__col lp-compare__col--basic">
+            <div class="lp-compare__head">
+              <span class="lp-compare__dot"></span>
+              <span class="lp-compare__tag">초급</span>
+              <h3>바이브 코딩 입문</h3>
+              <p>전공 상관없이 누구나, 6일 만에 내가 만든 서비스를 손에 쥐고 가는 입문 과정</p>
+            </div>
+            <dl class="lp-compare__list">
+              <div><dt>테마</dt><dd>바이브 코딩 (Vibe Coding)</dd></div>
+              <div><dt>일정</dt><dd><strong>2026.7.13(월) ~ 7.18(토)</strong> · 6일</dd></div>
+              <div><dt>시간</dt><dd>매일 09:00 – 18:00</dd></div>
+              <div><dt>학점</dt><dd>정규 <strong>1학점</strong></dd></div>
+              <div><dt>장소</dt><dd>제주대 아라캠퍼스</dd></div>
+              <div><dt>대상</dt><dd>제주대 재학생 · 코딩 입문자 환영</dd></div>
+              <div><dt>활동</dt><dd>프롬프트 · GitHub · UX/UI · 미니 프로젝트</dd></div>
+            </dl>
+            <a href="#curriculum-basic" class="btn lp-compare__cta">초급 커리큘럼 보기 →</a>
+          </article>
+
+          <article class="lp-compare__col lp-compare__col--advanced">
+            <div class="lp-compare__head">
+              <span class="lp-compare__dot"></span>
+              <span class="lp-compare__tag">중급</span>
+              <h3>딥러닝 실전 프로젝트</h3>
+              <p>Vision · NLP · LLM 실전 프로젝트와 해커톤·현장실습까지, 3주 풀 몰입</p>
+            </div>
+            <dl class="lp-compare__list">
+              <div><dt>테마</dt><dd>딥러닝 · Vision · NLP · LLM</dd></div>
+              <div><dt>일정</dt><dd><strong>2026.7.20(월) ~ 8.8(금)</strong> · 3주</dd></div>
+              <div><dt>시간</dt><dd>매일 09:00 – 18:00</dd></div>
+              <div><dt>학점</dt><dd>정규 <strong>3학점</strong></dd></div>
+              <div><dt>장소</dt><dd>제주대 + <strong>바닷가 워케이션 공간</strong></dd></div>
+              <div><dt>대상</dt><dd>초급 이수자 · 바이브 코딩 경험자 우대</dd></div>
+              <div><dt>활동</dt><dd>PyTorch · CNN · RNN · NLP · 팀 프로젝트 · 해커톤 · 현장실습</dd></div>
+            </dl>
+            <a href="#curriculum-advanced" class="btn lp-compare__cta">중급 커리큘럼 보기 →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== CURRICULUM · BASIC =============== -->
+    <section id="curriculum" class="lp-section">
+      <div id="curriculum-basic" class="max-width">
+        <div class="lp-section__head">
+          <span class="lp-eyebrow lp-eyebrow--green">🟢 BASIC · 6 DAYS</span>
+          <h2 class="lp-section__title">바이브 코딩 입문 — <span class="txt-highlight-green">6일 집중</span></h2>
+          <p class="lp-section__desc">
+            전공 상관없이 누구나, AI를 자기 학업·생활·진로에 써먹을 수 있는 기본 역량을 갖춥니다.
+            바이브 코딩으로 아이디어를 진짜 결과물로 만들고, 제주 산업에 적용하는 안목까지.
+          </p>
+        </div>
+
+        <ol class="lp-timeline">
+          <li class="lp-timeline__item">
+            <span class="lp-timeline__day">Day 1</span>
+            <span class="lp-timeline__date">7/13</span>
+            <div class="lp-timeline__body">
+              <h3>환경 세팅 · 툴 비교</h3>
+              <p>생성형 AI 개요, 바이브 코딩 툴 비교(Claude Code · Copilot · Antigravity · Gemini CLI), 개발 환경, GitHub 가입</p>
+            </div>
+          </li>
+          <li class="lp-timeline__item">
+            <span class="lp-timeline__day">Day 2</span>
+            <span class="lp-timeline__date">7/14</span>
+            <div class="lp-timeline__body">
+              <h3>프롬프트 엔지니어링</h3>
+              <p>LLM 동작 원리, 프롬프트·컨텍스트 엔지니어링, 역할·예시·단계적 지시</p>
+            </div>
+          </li>
+          <li class="lp-timeline__item">
+            <span class="lp-timeline__day">Day 3</span>
+            <span class="lp-timeline__date">7/15</span>
+            <div class="lp-timeline__body">
+              <h3>GitHub & UX/UI</h3>
+              <p>저장소·커밋·푸시·풀, UX/UI 기초, AI로 화면 시안 만들기</p>
+            </div>
+          </li>
+          <li class="lp-timeline__item">
+            <span class="lp-timeline__day">Day 4</span>
+            <span class="lp-timeline__date">7/16</span>
+            <div class="lp-timeline__body">
+              <h3>프론트 · 백 · DB / 요구사항 명세</h3>
+              <p>웹 서비스 구조, 서버–클라이언트, DB 기초, AI에게 잘 시키는 명세 작성</p>
+            </div>
+          </li>
+          <li class="lp-timeline__item">
+            <span class="lp-timeline__day">Day 5</span>
+            <span class="lp-timeline__date">7/17</span>
+            <div class="lp-timeline__body">
+              <h3>제주 산업 사례 / AI 윤리</h3>
+              <p>스마트 관광 · 재생에너지 · 스마트팩토리 사례, 환각·편향·저작권 이슈</p>
+            </div>
+          </li>
+          <li class="lp-timeline__item lp-timeline__item--final">
+            <span class="lp-timeline__day">Day 6</span>
+            <span class="lp-timeline__date">7/18</span>
+            <div class="lp-timeline__body">
+              <h3>🎤 미니 프로젝트 발표</h3>
+              <p>관심 주제로 바이브 코딩 결과물 구현, 개인별 시연 · 회고 · 피드백</p>
+            </div>
+          </li>
+        </ol>
+
+        <p class="lp-curr-note">세부 일정은 운영 사정에 따라 조정될 수 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- =============== CURRICULUM · ADVANCED =============== -->
+    <section class="lp-section lp-section--gray">
+      <div id="curriculum-advanced" class="max-width">
+        <div class="lp-section__head">
+          <span class="lp-eyebrow lp-eyebrow--blue">🔵 ADVANCED · 15 WEEKS + 3 WEEKS</span>
+          <h2 class="lp-section__title">딥러닝 실전 프로젝트 — <span class="txt-highlight">3주 몰입</span></h2>
+          <p class="lp-section__desc">
+            <strong>딥러닝 이론 + 실무 프로젝트 + 해커톤 + 현장실습</strong> 까지 한 번에.
+            Vision · NLP 분야의 실전 프로젝트로 데이터 분석부터 모델 튜닝까지 전 과정을 경험합니다.
+          </p>
+        </div>
+
+        <div class="lp-part">
+          <span class="lp-part__num">Part 1</span>
+          <div class="lp-part__body">
+            <h3>학내 이론·실습 (45시간)</h3>
+            <p>정규학기 사전 이수 — 15주에 걸쳐 PyTorch · CNN · RNN · NLP 의 기반을 다집니다.</p>
+          </div>
+        </div>
+
+        <div class="lp-weeks">
+          <article class="lp-weeks__item"><span class="lp-weeks__num">1주</span><h4>딥러닝 개요</h4><p>인공신경망 개념·역사, OT/환경 점검</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">2주</span><h4>PyTorch 기초</h4><p>텐서 · 모델 · 활성화 함수</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">3주</span><h4>데이터 전처리</h4><p>Pandas / Matplotlib / Seaborn, EDA</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">4주</span><h4>EDA 실습랩</h4><p>도메인 데이터 미니랩</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">5주</span><h4>CNN 이론</h4><p>Linear/Conv 레이어, 필터·풀링, CNN 아키텍처</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">6주</span><h4>CNN 실습 (1)</h4><p>이미지 분류 (개/고양이)</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">7주</span><h4>CNN 실습 (2) + RNN</h4><p>분류 완성, Embedding · Recurrent</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">8주</span><h4>RNN 실습</h4><p>LSTM 작사가 AI</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">9주</span><h4>Attention</h4><p>원리, Seq2Seq 핸즈온</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">10주</span><h4>NLP 모델</h4><p>토큰화·정규화, 뉴스 카테고리 다중분류</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">11주</span><h4>모델 평가</h4><p>Confusion Matrix · F1-score</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">12주</span><h4>하이퍼파라미터</h4><p>교차검증, Grid/Random 튜닝</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">13주</span><h4>모델 개선</h4><p>과대 · 과소적합, L1/L2/Dropout</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">14주</span><h4>프로젝트 기획</h4><p>주제·요구사항·평가지표·데이터 명세</p></article>
+          <article class="lp-weeks__item"><span class="lp-weeks__num">15주</span><h4>중간 점검</h4><p>발표 · 피드백, 종합 점검</p></article>
+        </div>
+
+        <div class="lp-part lp-part--alt">
+          <span class="lp-part__num">Part 2</span>
+          <div class="lp-part__body">
+            <h3>부트캠프 — 프로젝트 · 해커톤 · 현장실습 (90시간)</h3>
+            <p><strong>7.20(월) ~ 8.8(금) · 3주 집중 몰입</strong> · 학내 + 참여기업 + 협업기관 연계</p>
+          </div>
+        </div>
+
+        <div class="lp-tracks-3">
+          <article class="lp-tracks-3__item">
+            <span class="lp-tracks-3__icon">🛠</span>
+            <h4>프로젝트 트랙</h4>
+            <p>팀빌딩 · 문제정의 → EDA → 전처리 → 베이스라인 → 평가 · 개선 → 최종 발표</p>
+          </article>
+          <article class="lp-tracks-3__item">
+            <span class="lp-tracks-3__icon">🏁</span>
+            <h4>해커톤 트랙</h4>
+            <p>기업이 직접 던지는 실제 문제 · 데이터로 단기 결과물 제작</p>
+          </article>
+          <article class="lp-tracks-3__item">
+            <span class="lp-tracks-3__icon">🏢</span>
+            <h4>현장실습 트랙</h4>
+            <p>참여 기업의 산업·비즈니스 구조 이해, AI 문제·데이터 구조 직접 듣기 <em>(기업 방문 포함)</em></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== BENEFITS =============== -->
+    <section id="benefits" class="lp-section">
+      <div class="max-width">
+        <div class="lp-section__head">
+          <span class="lp-eyebrow">Benefits for Graduates</span>
+          <h2 class="lp-section__title">🎁 이수자에게만 주어지는 <span class="txt-highlight">혜택</span></h2>
+        </div>
+
+        <div class="lp-benefits">
+          <article class="lp-benefit lp-benefit--cash">
+            <span class="lp-benefit__icon">💰</span>
+            <strong>CASH</strong>
+            <h4>장학금 최대 100만원</h4>
+            <p>최소 20만원 ~ 최대 100만원</p>
+          </article>
+          <article class="lp-benefit lp-benefit--credit">
+            <span class="lp-benefit__icon">🎓</span>
+            <strong>CREDIT</strong>
+            <h4>정규 학점 인정</h4>
+            <p>초급 1학점 / 중급 3학점</p>
+          </article>
+          <article class="lp-benefit lp-benefit--global">
+            <span class="lp-benefit__icon">🌏</span>
+            <strong>GLOBAL</strong>
+            <h4>해외 학술대회·해커톤</h4>
+            <p>🇺🇸 미국 5명 / 🇸🇬 싱가포르 10명 / 🇵🇭 필리핀 10명</p>
+          </article>
+          <article class="lp-benefit lp-benefit--career">
+            <span class="lp-benefit__icon">💼</span>
+            <strong>CAREER</strong>
+            <h4>서울·제주 유망 기업</h4>
+            <p>탐방 + 인턴십 + 채용 우대</p>
+          </article>
+          <article class="lp-benefit lp-benefit--free">
+            <span class="lp-benefit__icon">🆓</span>
+            <strong>FREE</strong>
+            <h4>수강료 전액 지원</h4>
+            <p>0원 부담</p>
+          </article>
+          <article class="lp-benefit lp-benefit--stay">
+            <span class="lp-benefit__icon">🛏️</span>
+            <strong>STAY</strong>
+            <h4>기숙사(학생생활관) 지원</h4>
+            <p>희망자 사전 신청 필수</p>
+          </article>
+          <article class="lp-benefit lp-benefit--badge">
+            <span class="lp-benefit__icon">🏅</span>
+            <strong>BADGE</strong>
+            <h4>디지털 배지(Open Badge)</h4>
+            <p>LinkedIn · 포트폴리오 즉시 게시</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== DIGITAL BADGE =============== -->
+    <section class="lp-section lp-section--badge">
+      <div class="max-width lp-badge__inner">
+        <div class="lp-badge__copy">
+          <span class="lp-eyebrow">Open Badge · 4-Level</span>
+          <h2 class="lp-section__title">🏅 디지털 배지 — <span class="txt-highlight">4단계 공동 인증</span></h2>
+          <p class="lp-section__desc lp-section__desc--left">
+            단순 수료증이 아닙니다.<br />
+            <strong>학습 성취도와 실무 역량을 단계별로 검증하는 4-Level 인증 체계.</strong>
+          </p>
+          <p class="lp-badge__note">
+            발급된 배지는 <strong>LinkedIn · 포트폴리오에 즉시 게시 가능</strong>.<br />
+            제주테크노파크 AI 멘토, 제주창조경제혁신센터 강사 풀 등록 등 <strong>전문가 자격</strong>으로도 활용할 수 있습니다.
+          </p>
+        </div>
+
+        <ol class="lp-badge__steps">
+          <li class="lp-badge__step lp-badge__step--4">
+            <span class="lp-badge__step-num">Step 4</span>
+            <h3>Master</h3>
+            <p class="lp-badge__step-desc">전 과정 이수 + 취업 역량 완비</p>
+            <p class="lp-badge__step-by"><em>인증</em> (재)제주테크노파크 + 대학</p>
+          </li>
+          <li class="lp-badge__step lp-badge__step--3">
+            <span class="lp-badge__step-num">Step 3</span>
+            <h3>Experience</h3>
+            <p class="lp-badge__step-desc">PBL 프로젝트 수행 (협업·문제해결)</p>
+            <p class="lp-badge__step-by"><em>인증</em> 분야별 협회 (평가·멘토링)</p>
+          </li>
+          <li class="lp-badge__step lp-badge__step--2">
+            <span class="lp-badge__step-num">Step 2</span>
+            <h3>Skill</h3>
+            <p class="lp-badge__step-desc">실습 과제 · 툴 활용 능력</p>
+            <p class="lp-badge__step-by"><em>인증</em> 교육 운영 파트너 (Google · Upstage 자문)</p>
+          </li>
+          <li class="lp-badge__step lp-badge__step--1">
+            <span class="lp-badge__step-num">Step 1</span>
+            <h3>Knowledge</h3>
+            <p class="lp-badge__step-desc">기초 개념 · 이론 학습</p>
+            <p class="lp-badge__step-by"><em>인증</em> 제주대학교 (LMS 기반 자동 발급)</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =============== TARGET =============== -->
+    <section class="lp-section lp-section--gray">
+      <div class="max-width">
+        <div class="lp-section__head">
+          <span class="lp-eyebrow">For You</span>
+          <h2 class="lp-section__title">👀 이런 분에게 <span class="txt-highlight">추천</span>합니다</h2>
+        </div>
+
+        <div class="lp-target">
+          <article class="lp-target__col lp-target__col--basic">
+            <span class="lp-target__tag">🟢 초급 · 바이브 코딩</span>
+            <ul>
+              <li>"AI 궁금한데 코딩은 한 번도 안 해봤다"는 비전공자</li>
+              <li>내 전공에 AI를 얹어보고 싶은 학생</li>
+              <li>6일 만에 <strong>내가 만든 서비스</strong>를 손에 쥐고 싶은 학생</li>
+            </ul>
+          </article>
+
+          <article class="lp-target__col lp-target__col--advanced">
+            <span class="lp-target__tag">🔵 중급 · 딥러닝 실전</span>
+            <ul>
+              <li>초급(바이브 코딩)을 마치고 <strong>실전 프로젝트</strong>로 한 단계 도약하고 싶은 학생</li>
+              <li>Vision · NLP 모델을 직접 학습 · 튜닝해보고 싶은 학생</li>
+              <li><strong>기업의 실제 데이터·문제</strong>에 도전해보고 싶은 학생</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== APPLY =============== -->
+    <section id="apply" class="lp-cta">
+      <div class="max-width lp-cta__inner">
+        <span class="lp-eyebrow lp-eyebrow--white">Apply Now</span>
+        <h2 class="lp-cta__title">
+          🌊 제주에서, AI로,<br />
+          내가 원하는 서비스를 만들어보자!
+        </h2>
+        <p class="lp-cta__desc">
+          <strong>선착순 · 정원 마감 시 조기 종료</strong><br />
+          홈페이지 신청 양식 작성 후 제출해주세요.
+        </p>
+
+        <a href="#" class="btn btn--primary lp-cta__btn" data-modal-trigger>지금 신청하기</a>
+
+        <ul class="lp-apply__info">
+          <li><strong>신청 항목</strong>이름 · 학과 · 학번 · 전화번호 · 이메일 · 지원 과정 (초급 / 중급 / 초급+중급 연계)</li>
+          <li><strong>📧 문의</strong> <a href="mailto:press0913@jejunu.ac.kr">press0913@jejunu.ac.kr</a></li>
+          <li><strong>📞 연락</strong> 추후 기재</li>
+          <li><strong>주관</strong> 제주대학교 AI 부트캠프 사업단</li>
+        </ul>
+
+        <p class="lp-cta__hashtag">#CODE_WITH_VIBES</p>
+      </div>
+    </section>
+
+    <!-- =============== PARTNERS =============== -->
+    <section class="lp-partners">
+      <div class="max-width lp-partners__inner">
+        <span class="lp-eyebrow">Powered by</span>
+        <h2 class="lp-partners__title">🤝 함께 만드는 사람들</h2>
+        <ul class="lp-partners__logos">
+          <li><strong>제주대학교</strong><small>JEJU NATIONAL UNIVERSITY</small></li>
+          <li><strong>모두의연구소</strong><small>MODULABS</small></li>
+          <li><strong>업스테이지</strong><small>UPSTAGE</small></li>
+          <li><strong>위니브</strong><small>WENIV</small></li>
+        </ul>
+        <p class="lp-partners__caption">첨단산업 인재양성 부트캠프</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============== MODAL =============== -->
+  <div id="lp-modal" class="lp-modal" role="dialog" aria-modal="true" aria-labelledby="lp-modal-title" aria-hidden="true">
+    <div class="lp-modal__backdrop" data-modal-close aria-hidden="true"></div>
+    <div class="lp-modal__panel">
+      <h3 id="lp-modal-title" class="lp-modal__title">신청 폼 준비 중</h3>
+      <p class="lp-modal__desc">
+        신청 폼은 준비 중이며, 오픈되는 대로<br />
+        본 페이지의 <strong>지금 신청하기</strong> 버튼이 활성화됩니다.<br />
+        문의는 <a href="mailto:press0913@jejunu.ac.kr">press0913@jejunu.ac.kr</a>
+      </p>
+      <button type="button" class="btn btn--primary lp-modal__close" data-modal-close>확인</button>
+    </div>
+  </div>
+
+  <!-- =============== FOOTER =============== -->
+  <footer class="lp-footer">
+    <div class="max-width lp-footer__inner">
+      <div>
+        <div class="lp-footer__brand">AI 부트캠프 in 제주</div>
+        <div class="lp-footer__row">2026 첨단산업 인재양성 부트캠프 · 제주대학교 사업단</div>
+      </div>
+      <div class="lp-footer__row">
+        <div>📧 press0913@jejunu.ac.kr</div>
+        <div>© 2026 AI Bootcamp in Jeju</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============== MODAL SCRIPT =============== -->
+  <script>
+    (function () {
+      const modal = document.getElementById('lp-modal');
+      if (!modal) return;
+      let lastFocused = null;
+      function open(trigger) {
+        lastFocused = trigger || document.activeElement;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const closeBtn = modal.querySelector('.lp-modal__close');
+        if (closeBtn) closeBtn.focus();
+      }
+      function close() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      }
+      document.querySelectorAll('[data-modal-trigger]').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          open(btn);
+        });
+      });
+      modal.querySelectorAll('[data-modal-close]').forEach(function (el) {
+        el.addEventListener('click', close);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+      });
+    })();
+  </script>
+
+  <!-- =============== HERO 3D SCENE — 제주 행성 =============== -->
+  <script type="module">
+    import * as THREE from 'three';
+    import {
+      makePalmTree,
+      makeTangerine,
+      makeDolharubang,
+      loadLycat,
+    } from './web_style/3d/index.js';
+
+    const canvas = document.querySelector('#hero-canvas');
+    if (canvas) {
+      const container = canvas.parentElement;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+      camera.position.set(0, 0.6, 7);
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas, antialias: true, alpha: true,
+        powerPreference: 'high-performance',
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.05;
+
+      function resize() {
+        const w = container.clientWidth || 1;
+        const h = container.clientHeight || 1;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h, false);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Lights
+      scene.add(new THREE.HemisphereLight(0xfff4e8, 0xc8d4ee, 0.95));
+      const sun = new THREE.DirectionalLight(0xffefdc, 0.35);
+      sun.position.set(3, 4, 4);
+      scene.add(sun);
+
+      // Planet group
+      const planetGroup = new THREE.Group();
+      scene.add(planetGroup);
+      function applyPlanetScale() {
+        planetGroup.scale.setScalar(window.innerWidth <= 900 ? 0.65 : 1);
+      }
+      applyPlanetScale();
+      window.addEventListener('resize', applyPlanetScale);
+
+      const R = 1.4;
+      const planet = new THREE.Mesh(
+        new THREE.SphereGeometry(R, 64, 64),
+        new THREE.MeshStandardMaterial({ color: 0x86cc99, roughness: 0.85 })
+      );
+      planetGroup.add(planet);
+
+      // House on planet
+      const house = new THREE.Group();
+      house.add(new THREE.Mesh(
+        new THREE.BoxGeometry(0.34, 0.26, 0.34),
+        new THREE.MeshStandardMaterial({ color: 0xfff1d6, roughness: 0.7 })
+      ));
+      const roof = new THREE.Mesh(
+        new THREE.ConeGeometry(0.3, 0.22, 4),
+        new THREE.MeshStandardMaterial({ color: 0xe76b6b, roughness: 0.6 })
+      );
+      roof.position.y = 0.24;
+      roof.rotation.y = Math.PI / 4;
+      house.add(roof);
+      const chimney = new THREE.Mesh(
+        new THREE.BoxGeometry(0.06, 0.14, 0.06),
+        new THREE.MeshStandardMaterial({ color: 0xa05050 })
+      );
+      chimney.position.set(0.08, 0.34, -0.08);
+      house.add(chimney);
+      const houseScale = 0.7;
+      const houseSink = 0.05;
+      house.scale.setScalar(houseScale);
+      house.position.set(0, R + 0.13 * houseScale - houseSink, 0);
+      planet.add(house);
+
+      // Smoke
+      const smokes = [];
+      for (let i = 0; i < 3; i++) {
+        const s = new THREE.Mesh(
+          new THREE.SphereGeometry(0.05, 8, 8),
+          new THREE.MeshStandardMaterial({ color: 0xeef0f5, transparent: true, opacity: 0.85 })
+        );
+        s.userData = { phase: i * 0.5 };
+        house.add(s);
+        smokes.push(s);
+      }
+
+      function mountToPlanet(rawObj, { lat, lng, targetSize = 0.5, sink = 0, yaw = 0 }) {
+        const preBox = new THREE.Box3().setFromObject(rawObj);
+        const preSize = new THREE.Vector3();
+        preBox.getSize(preSize);
+        const longest = Math.max(preSize.x, preSize.y, preSize.z) || 1;
+        rawObj.scale.multiplyScalar(targetSize / longest);
+        rawObj.updateMatrixWorld(true);
+        const box = new THREE.Box3().setFromObject(rawObj);
+        rawObj.position.y -= box.min.y;
+        const wrapper = new THREE.Group();
+        wrapper.add(rawObj);
+        const r = R - sink;
+        const phi = THREE.MathUtils.degToRad(lat);
+        const theta = THREE.MathUtils.degToRad(lng);
+        const p = new THREE.Vector3(
+          r * Math.sin(phi) * Math.cos(theta),
+          r * Math.cos(phi),
+          r * Math.sin(phi) * Math.sin(theta)
+        );
+        wrapper.position.copy(p);
+        const q = new THREE.Quaternion().setFromUnitVectors(
+          new THREE.Vector3(0, 1, 0), p.clone().normalize()
+        );
+        if (yaw) {
+          q.multiply(new THREE.Quaternion().setFromAxisAngle(
+            new THREE.Vector3(0, 1, 0), THREE.MathUtils.degToRad(yaw)
+          ));
+        }
+        wrapper.quaternion.copy(q);
+        return wrapper;
+      }
+
+      // Palms × 5
+      planet.add(mountToPlanet(makePalmTree(), { lat: 62,  lng: 35,   targetSize: 0.475, sink: 0.03 }));
+      planet.add(mountToPlanet(makePalmTree(), { lat: 118, lng: 200,  targetSize: 0.425, sink: 0.03, yaw: 40 }));
+      planet.add(mountToPlanet(makePalmTree(), { lat: 50,  lng: -150, targetSize: 0.45,  sink: 0.03, yaw: -20 }));
+      planet.add(mountToPlanet(makePalmTree(), { lat: 95,  lng: 250,  targetSize: 0.40,  sink: 0.03, yaw: 60 }));
+      planet.add(mountToPlanet(makePalmTree(), { lat: 145, lng: 60,   targetSize: 0.46,  sink: 0.03, yaw: 110 }));
+
+      // Tangerines × 8
+      planet.add(mountToPlanet(makeTangerine(), { lat: 45,  lng: 150,  targetSize: 0.16, sink: 0.01 }));
+      planet.add(mountToPlanet(makeTangerine(), { lat: 130, lng: 80,   targetSize: 0.14, sink: 0.01 }));
+      planet.add(mountToPlanet(makeTangerine(), { lat: 95,  lng: 280,  targetSize: 0.15, sink: 0.01 }));
+      planet.add(mountToPlanet(makeTangerine(), { lat: 30,  lng: -50,  targetSize: 0.13, sink: 0.01 }));
+      planet.add(mountToPlanet(makeTangerine(), { lat: 60,  lng: 320,  targetSize: 0.15, sink: 0.01 }));
+      planet.add(mountToPlanet(makeTangerine(), { lat: 110, lng: 180,  targetSize: 0.14, sink: 0.01 }));
+      planet.add(mountToPlanet(makeTangerine(), { lat: 150, lng: 10,   targetSize: 0.16, sink: 0.01 }));
+      planet.add(mountToPlanet(makeTangerine(), { lat: 35,  lng: 220,  targetSize: 0.13, sink: 0.01 }));
+
+      // Dolharubang
+      planet.add(mountToPlanet(makeDolharubang(), { lat: 35, lng: -95, targetSize: 0.275, sink: 0.02, yaw: 70 }));
+
+      // Laptop — 라이캣이 코딩 중인 노트북 (열린 상태)
+      function makeLaptop() {
+        const g = new THREE.Group();
+        const bodyMat = new THREE.MeshStandardMaterial({ color: 0x2c2f36, roughness: 0.45, metalness: 0.55 });
+        // base (키보드 부분)
+        const base = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.022, 0.22), bodyMat);
+        g.add(base);
+        // 키보드 위 살짝 어두운 면
+        const kb = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.28, 0.18),
+          new THREE.MeshBasicMaterial({ color: 0x14161b })
+        );
+        kb.rotation.x = -Math.PI / 2;
+        kb.position.set(0, 0.012, 0);
+        g.add(kb);
+        // screen (뒷판)
+        const screenBack = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.22, 0.018), bodyMat);
+        // 화면을 살짝 뒤로 기울여 펼쳐진 모양
+        const screenPivot = new THREE.Group();
+        screenPivot.position.set(0, 0.01, -0.11);
+        screenPivot.rotation.x = -Math.PI / 8;
+        screenBack.position.y = 0.11;
+        screenPivot.add(screenBack);
+        // 발광 디스플레이
+        const display = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.28, 0.18),
+          new THREE.MeshBasicMaterial({
+            color: 0x00d9ff, transparent: true, opacity: 0.95,
+            blending: THREE.AdditiveBlending,
+          })
+        );
+        display.position.set(0, 0.11, 0.011);
+        screenPivot.add(display);
+        g.add(screenPivot);
+        return g;
+      }
+      // 노트북을 행성에 부착 (집 반대편, 라이캣 자리)
+      planet.add(mountToPlanet(makeLaptop(), { lat: 30, lng: 58, targetSize: 0.32, sink: 0.005, yaw: -50 }));
+
+      // Lycat — 노트북 옆/뒤에 코딩 자세로 배치
+      loadLycat().then((model) => {
+        planet.add(mountToPlanet(model, { lat: 24, lng: 62, targetSize: 0.275, sink: 0.02, yaw: -50 }));
+      });
+
+      // ---- 궤도 위성: 코드 / 명령어 / 도구 라벨 (AI 활동을 시각화) ----
+      function makeLabelSprite(text, opts = {}) {
+        const {
+          color = '#ffffff',
+          bg = 'rgba(46, 111, 242, 0.95)',
+          font = '700 36px Pretendard, "Pretendard Variable", sans-serif',
+          padX = 22,
+        } = opts;
+        // 텍스트 너비 측정용 임시 캔버스
+        const meas = document.createElement('canvas').getContext('2d');
+        meas.font = font;
+        const tw = Math.ceil(meas.measureText(text).width);
+        const w = tw + padX * 2;
+        const h = 64;
+        const c = document.createElement('canvas');
+        c.width = w * 2;   // 레티나 대응
+        c.height = h * 2;
+        const ctx = c.getContext('2d');
+        ctx.scale(2, 2);
+        // pill 배경
+        const r = h / 2;
+        ctx.fillStyle = bg;
+        ctx.beginPath();
+        ctx.moveTo(r, 0);
+        ctx.lineTo(w - r, 0);
+        ctx.arcTo(w, 0, w, r, r);
+        ctx.lineTo(w, h - r);
+        ctx.arcTo(w, h, w - r, h, r);
+        ctx.lineTo(r, h);
+        ctx.arcTo(0, h, 0, h - r, r);
+        ctx.lineTo(0, r);
+        ctx.arcTo(0, 0, r, 0, r);
+        ctx.closePath();
+        ctx.fill();
+        // 텍스트
+        ctx.font = font;
+        ctx.fillStyle = color;
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, padX, h / 2 + 2);
+        const tex = new THREE.CanvasTexture(c);
+        tex.anisotropy = 4;
+        tex.minFilter = THREE.LinearFilter;
+        const mat = new THREE.SpriteMaterial({
+          map: tex, transparent: true, depthWrite: false,
+        });
+        const sprite = new THREE.Sprite(mat);
+        const aspect = w / h;
+        const scale = 0.42;
+        sprite.scale.set(aspect * scale, scale, 1);
+        return sprite;
+      }
+
+      const orbits = [];
+      const orbitConfigs = [
+        { text: '> 감귤 진단 앱 만들어줘', color: '#0c1018', bg: 'rgba(255, 225, 135, 0.95)', radius: 3.0, speed:  0.0040, tilt:  0.15 },
+        { text: '$ claude code',           color: '#ffffff', bg: 'rgba(20, 24, 30, 0.92)',     radius: 2.7, speed: -0.0055, tilt: -0.20 },
+        { text: '</>',                     color: '#ffffff', bg: 'rgba(46, 111, 242, 0.95)',   radius: 3.2, speed:  0.0030, tilt:  0.40 },
+        { text: 'git push',                color: '#ffffff', bg: 'rgba(43, 189, 107, 0.95)',   radius: 2.85, speed: -0.0045, tilt:  0.55 },
+        { text: 'AI',                      color: '#0c1018', bg: 'rgba(255, 177, 60, 0.95)',   radius: 3.1, speed:  0.0060, tilt: -0.45 },
+        { text: 'vibe()',                  color: '#ffffff', bg: 'rgba(155, 108, 255, 0.95)',  radius: 2.75, speed: -0.0035, tilt: -0.55 },
+        { text: 'PyTorch',                 color: '#ffffff', bg: 'rgba(201, 56, 100, 0.95)',   radius: 3.15, speed:  0.0050, tilt:  0.30 },
+      ];
+      orbitConfigs.forEach((opt) => {
+        const sprite = makeLabelSprite(opt.text, { color: opt.color, bg: opt.bg });
+        sprite.userData = {
+          radius: opt.radius,
+          theta: Math.random() * Math.PI * 2,
+          speed: opt.speed,
+          tilt: opt.tilt,
+          bob: Math.random() * Math.PI * 2,
+        };
+        planetGroup.add(sprite);
+        orbits.push(sprite);
+      });
+
+      // Saturn rings
+      const ring = new THREE.Mesh(
+        new THREE.TorusGeometry(1.95, 0.04, 8, 80),
+        new THREE.MeshBasicMaterial({ color: 0xa8c4ff, transparent: true, opacity: 0.55 })
+      );
+      ring.rotation.set(Math.PI * 0.42, 0, Math.PI * 0.08);
+      planetGroup.add(ring);
+
+      const ring2 = new THREE.Mesh(
+        new THREE.TorusGeometry(2.18, 0.018, 6, 80),
+        new THREE.MeshBasicMaterial({ color: 0xc8d8ff, transparent: true, opacity: 0.35 })
+      );
+      ring2.rotation.set(Math.PI * 0.42, 0, Math.PI * 0.08);
+      planetGroup.add(ring2);
+
+      // Moon
+      const moonPivot = new THREE.Group();
+      moonPivot.rotation.z = Math.PI * 0.18;
+      planetGroup.add(moonPivot);
+      const moon = new THREE.Mesh(
+        new THREE.SphereGeometry(0.22, 24, 24),
+        new THREE.MeshStandardMaterial({ color: 0xc8d2ec, roughness: 0.8 })
+      );
+      moon.position.set(2.45, 0, 0);
+      moonPivot.add(moon);
+
+      // Clouds
+      const clouds = [];
+      function makeCloud(scale) {
+        const c = new THREE.Group();
+        const mat = new THREE.MeshStandardMaterial({
+          color: 0xffffff, roughness: 0.95, transparent: true, opacity: 0.95,
+          emissive: 0xe9eef8, emissiveIntensity: 0.45,
+        });
+        for (let j = 0; j < 5; j++) {
+          const puff = new THREE.Mesh(
+            new THREE.SphereGeometry((0.18 + Math.random() * 0.12) * scale, 12, 12),
+            mat
+          );
+          puff.position.set((j - 2) * 0.18 * scale, Math.random() * 0.04, 0);
+          c.add(puff);
+        }
+        return c;
+      }
+      for (let i = 0; i < 5; i++) {
+        const c = makeCloud(0.85 + Math.random() * 0.45);
+        c.userData = {
+          radius: 1.85 + Math.random() * 0.4,
+          theta: Math.random() * Math.PI * 2,
+          speed: (0.0015 + Math.random() * 0.001) * (Math.random() < 0.5 ? -1 : 1),
+          tilt: (Math.random() - 0.5) * 0.7,
+        };
+        planetGroup.add(c);
+        clouds.push(c);
+      }
+
+      // Halo
+      const halo = new THREE.Mesh(
+        new THREE.SphereGeometry(R * 1.18, 32, 32),
+        new THREE.MeshBasicMaterial({
+          color: 0x8fb6ff, transparent: true, opacity: 0.2,
+          side: THREE.BackSide, blending: THREE.AdditiveBlending, depthWrite: false,
+        })
+      );
+      planetGroup.add(halo);
+
+      // Sparkles — 시안 + 보라 듀얼 톤으로 AI/사이버 느낌
+      function makeSparkles(count, color, size) {
+        const geo = new THREE.BufferGeometry();
+        const pos = new Float32Array(count * 3);
+        for (let i = 0; i < count; i++) {
+          const r = 3.2 + Math.random() * 3.8;
+          const t = Math.random() * Math.PI * 2;
+          const p = Math.acos(2 * Math.random() - 1);
+          pos[i*3]     = r * Math.sin(p) * Math.cos(t);
+          pos[i*3 + 1] = r * Math.sin(p) * Math.sin(t) * 0.5;
+          pos[i*3 + 2] = r * Math.cos(p);
+        }
+        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        const mat = new THREE.PointsMaterial({
+          color, size, transparent: true, opacity: 0.95,
+          blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true,
+        });
+        return new THREE.Points(geo, mat);
+      }
+      const sparklesCyan   = makeSparkles(90, 0x00d9ff, 0.11);
+      const sparklesPurple = makeSparkles(70, 0x9b6cff, 0.10);
+      scene.add(sparklesCyan, sparklesPurple);
+
+      // Pointer interaction
+      let pulse = 0;
+      let isDragging = false;
+      let lastPointerX = 0, lastPointerY = 0;
+      let dragVelY = 0, dragVelX = 0;
+      const ROT_SPEED = Math.PI * 2;
+      const TILT_LIMIT = 1.1;
+      const ZOOM_BASE = 7;
+      const ZOOM_MIN = 3.5;
+      const ZOOM_MAX = 11;
+      const ZOOM_STEP = 0.9;
+      let zoomDistance = ZOOM_BASE;
+
+      function onPointerDown(e) {
+        isDragging = true;
+        pulse = 1.0;
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
+        dragVelX = 0; dragVelY = 0;
+        if (canvas.setPointerCapture) canvas.setPointerCapture(e.pointerId);
+      }
+      function onPointerMove(e) {
+        if (!isDragging) return;
+        const rect = container.getBoundingClientRect();
+        const dx = (e.clientX - lastPointerX) / rect.width;
+        const dy = (e.clientY - lastPointerY) / rect.height;
+        const rotY = dx * ROT_SPEED;
+        const rotX = dy * ROT_SPEED * 0.7;
+        planetGroup.rotation.y += rotY;
+        planetGroup.rotation.x = THREE.MathUtils.clamp(
+          planetGroup.rotation.x + rotX, -TILT_LIMIT, TILT_LIMIT
+        );
+        dragVelY = rotY;
+        dragVelX = rotX;
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
+      }
+      function onPointerUp(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        if (canvas.releasePointerCapture && e && e.pointerId !== undefined) {
+          try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
+        }
+      }
+      canvas.addEventListener('pointerdown', onPointerDown);
+      canvas.addEventListener('pointermove', onPointerMove);
+      canvas.addEventListener('pointerup', onPointerUp);
+      canvas.addEventListener('pointercancel', onPointerUp);
+
+      canvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const dir = Math.sign(e.deltaY);
+        zoomDistance = THREE.MathUtils.clamp(
+          zoomDistance + dir * 0.4, ZOOM_MIN, ZOOM_MAX
+        );
+      }, { passive: false });
+
+      container.querySelectorAll('.lp-hero__zoom-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const dir = btn.dataset.zoom === 'in' ? -1 : 1;
+          zoomDistance = THREE.MathUtils.clamp(
+            zoomDistance + dir * ZOOM_STEP, ZOOM_MIN, ZOOM_MAX
+          );
+        });
+      });
+
+      let visible = true;
+      const io = new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+      }, { threshold: 0.01 });
+      io.observe(canvas);
+
+      const clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!visible) return;
+        const t = clock.getElapsedTime();
+        pulse *= 0.94;
+        const speed = reduceMotion ? 0 : 1 + pulse * 1.5;
+
+        if (!isDragging && !reduceMotion) {
+          if (Math.abs(dragVelY) > 0.0001 || Math.abs(dragVelX) > 0.0001) {
+            planetGroup.rotation.y += dragVelY;
+            planetGroup.rotation.x = THREE.MathUtils.clamp(
+              planetGroup.rotation.x + dragVelX, -TILT_LIMIT, TILT_LIMIT
+            );
+            dragVelY *= 0.92;
+            dragVelX *= 0.92;
+          }
+        }
+
+        if (!reduceMotion) {
+          planet.rotation.y += 0.0035 * speed;
+          ring.rotation.z += 0.0008 * speed;
+          ring2.rotation.z -= 0.0006 * speed;
+          moonPivot.rotation.y += 0.006 * speed;
+          moon.rotation.y += 0.012 * speed;
+
+          clouds.forEach(c => {
+            c.userData.theta += c.userData.speed * speed;
+            const r = c.userData.radius;
+            c.position.set(
+              Math.cos(c.userData.theta) * r,
+              Math.sin(c.userData.tilt) * r * 0.4,
+              Math.sin(c.userData.theta) * r
+            );
+            c.lookAt(0, 0, 0);
+          });
+
+          smokes.forEach(s => {
+            const phase = (t * 0.7 + s.userData.phase) % 1.5;
+            s.position.set(
+              0.08 + Math.sin(phase * 4) * 0.015,
+              0.42 + phase * 0.18,
+              -0.08 + Math.cos(phase * 4) * 0.015
+            );
+            const fadeIn = Math.min(phase * 4, 1);
+            s.material.opacity = 0.85 * fadeIn * (1 - phase / 1.5);
+            s.scale.setScalar(1 + phase * 0.5);
+          });
+
+          sparklesCyan.rotation.y   +=  0.0010;
+          sparklesPurple.rotation.y += -0.0008;
+          sparklesCyan.material.opacity   = 0.72 + Math.sin(t * 1.4) * 0.22;
+          sparklesPurple.material.opacity = 0.62 + Math.sin(t * 1.4 + 1.6) * 0.22;
+          halo.scale.setScalar(1 + Math.sin(t * 0.8) * 0.02 + pulse * 0.04);
+
+          // 코드/명령어 위성 — 행성 둘레 다중 궤도
+          orbits.forEach((o) => {
+            o.userData.theta += o.userData.speed * speed;
+            const r = o.userData.radius;
+            const tilt = o.userData.tilt;
+            const bob = Math.sin(t * 0.6 + o.userData.bob) * 0.06;
+            o.position.set(
+              Math.cos(o.userData.theta) * r,
+              Math.sin(tilt) * r * 0.45 + bob,
+              Math.sin(o.userData.theta) * r * Math.cos(tilt)
+            );
+            // 카메라 근접도에 따라 살짝 페이드 (앞쪽 위성만 또렷)
+            const zNorm = (o.position.z + r) / (2 * r);
+            o.material.opacity = 0.35 + zNorm * 0.6;
+          });
+        }
+
+        camera.position.x = 0;
+        camera.position.z += (zoomDistance - camera.position.z) * 0.12;
+        camera.position.y = 0.6;
+        camera.lookAt(0, 0.2, 0);
+
+        renderer.render(scene, camera);
+      }
+      animate();
+    }
+  </script>
+
+</body>
+</html>
