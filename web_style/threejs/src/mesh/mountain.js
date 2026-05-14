@@ -3,8 +3,8 @@ import * as THREE from 'three';
 export default function printMountain() {
 
   const loader = new THREE.TextureLoader();
-  const top = loader.load('../../src/textures/mountain/mountain_top.jpg')
-  const side = loader.load('../../src/textures/mountain/mountain.jpg')
+  const top = loader.load(new URL('../textures/mountain/mountain_top.jpg', import.meta.url).href);
+  const side = loader.load(new URL('../textures/mountain/mountain.jpg', import.meta.url).href);
 
   const geometry = new THREE.CylinderGeometry(1, 3, 3, 8);
   const material = new THREE.MeshStandardMaterial({ color: 0xffaaaa })

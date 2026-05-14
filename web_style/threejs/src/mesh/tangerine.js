@@ -4,9 +4,9 @@ export default function printTangerine() {
 
   // 한라봉
   const loader = new THREE.TextureLoader();
-  const basecolor = loader.load('../../src/textures/orange/Orange_001_COLOR.jpg');
-  const normal = loader.load('../../src/textures/orange/Orange_001_NORM.jpg')
-  const rough = loader.load('../../src/textures/orange/Orange_001_ROUGH.jpg')
+  const basecolor = loader.load(new URL('../textures/orange/Orange_001_COLOR.jpg', import.meta.url).href);
+  const normal = loader.load(new URL('../textures/orange/Orange_001_NORM.jpg', import.meta.url).href);
+  const rough = loader.load(new URL('../textures/orange/Orange_001_ROUGH.jpg', import.meta.url).href);
 
   const tangerine = new THREE.Group();
   const body = new THREE.Group();
