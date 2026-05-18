@@ -188,12 +188,13 @@ body {
 /* ============================================================ */
 .lp-hero {
   position: relative;
+  isolation: isolate;
   padding: 8rem 0 6rem;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 10%, rgba(255, 177, 60, .18), transparent 70%),
-    radial-gradient(ellipse 80% 60% at 10% 80%, rgba(43, 189, 107, .22), transparent 70%),
-    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(var(--primary-rgb), .12), transparent 75%),
+    radial-gradient(ellipse 80% 60% at 70% 10%, rgba(255, 177, 60, .08), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 10% 80%, rgba(43, 189, 107, .10), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(var(--primary-rgb), .05), transparent 75%),
     linear-gradient(180deg, var(--background) 0%, var(--grayLv1) 100%);
 }
 .lp-hero__aurora {
@@ -201,19 +202,22 @@ body {
   inset: 0;
   pointer-events: none;
   background:
-    conic-gradient(from 220deg at 80% 20%, rgba(255, 177, 60, .25), transparent 30%, rgba(43, 189, 107, .2) 60%, transparent 80%);
+    conic-gradient(from 220deg at 80% 20%, rgba(255, 177, 60, .12), transparent 30%, rgba(43, 189, 107, .1) 60%, transparent 80%);
   filter: blur(80px);
-  opacity: .55;
+  opacity: .35;
 }
 .lp-hero__inner {
-  position: relative;
-  z-index: 1;
+  /* visual 이 inner 가 아닌 .lp-hero 기준으로 풀너비 절대 배치되도록 static 유지 */
+  position: static;
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 5rem;
   align-items: center;
 }
-.lp-hero__copy { position: relative; z-index: 2; }
+.lp-hero__copy {
+  position: relative;
+  z-index: 2;
+}
 .lp-hero__badge {
   display: inline-flex;
   align-items: center;
@@ -316,24 +320,42 @@ body {
   font-weight: 500;
 }
 
-/* HERO 3D */
+/* HERO 3D — 데스크톱·모바일 공통으로 hero 전체를 채우는 풀블리드 배경.
+   궤도 텍스트 프롬프트가 컬럼 경계에서 클리핑되지 않도록 .lp-hero__visual 자체에
+   max-width/border-radius/aspect-ratio 를 두지 않음. */
 .lp-hero__visual {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 60rem;
-  aspect-ratio: 1 / 1;
-  justify-self: end;
-  min-height: 50rem;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  overflow: hidden;
   cursor: grab;
+  z-index: 0;
 }
 .lp-hero__visual:active { cursor: grabbing; }
+/* 데스크톱: 좌측(텍스트) 짙고 우측(3D) 투명 — 가로 페이드 스크림 */
+.lp-hero__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    rgba(var(--background-rgb), 0.92) 0%,
+    rgba(var(--background-rgb), 0.78) 28%,
+    rgba(var(--background-rgb), 0.42) 55%,
+    rgba(var(--background-rgb), 0.12) 80%,
+    rgba(var(--background-rgb), 0) 100%);
+}
 #hero-canvas {
   position: absolute;
   inset: 0;
   width: 100% !important;
   height: 100% !important;
   display: block;
-  filter: drop-shadow(0 30px 80px rgba(43, 189, 107, .25)) drop-shadow(0 10px 30px rgba(var(--primary-rgb), .2));
+  filter: drop-shadow(0 24px 60px rgba(43, 189, 107, .14)) drop-shadow(0 8px 24px rgba(var(--primary-rgb), .1));
 }
 .lp-hero__hint {
   position: absolute;
@@ -348,6 +370,7 @@ body {
   pointer-events: none;
   user-select: none;
   animation: lp-hint-pulse 2.4s ease-in-out infinite;
+  z-index: 2;
 }
 @keyframes lp-hint-pulse {
   0%, 100% { opacity: .4; }
@@ -435,26 +458,92 @@ body {
 }
 
 @media (max-width: 900px) {
-  .lp-hero { padding: 5rem 0 4rem; }
+  .lp-hero { padding: 5rem 0 4.5rem; }
   .lp-hero__inner {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.4rem;
   }
+  /* 모바일: 드래그/줌 인터랙션 비활성 (페이지 스크롤과 충돌 방지) */
   .lp-hero__visual {
-    order: -1;
-    max-width: 40rem;
-    min-height: 36rem;
-    justify-self: center;
-    margin: 0 auto;
+    pointer-events: none;
+    cursor: default;
+  }
+  .lp-hero__visual:active { cursor: default; }
+  /* 모바일 스크림: 위→아래 세로 페이드. 옅게 깔아 3D·궤도 텍스트가 충분히 보이게 */
+  .lp-hero__visual::after {
+    background: linear-gradient(180deg,
+      rgba(var(--background-rgb), 0.22) 0%,
+      rgba(var(--background-rgb), 0.40) 50%,
+      rgba(var(--background-rgb), 0.55) 100%);
+  }
+  /* 3D 위 텍스트 가독성 — 모바일은 텍스트가 캔버스와 더 많이 겹치므로 그림자 보강 */
+  .lp-hero__copy {
+    text-shadow:
+      0 1px 2px rgba(var(--background-rgb), 0.85),
+      0 0 14px rgba(var(--background-rgb), 0.6);
+  }
+  /* 모바일에서도 데스크톱과 동일한 그라데이션 사용.
+     단, 투명 채움 뒤로 부모 text-shadow 가 비쳐 색이 흐트러지지 않도록 .lp-hl 에서 그림자 끊음 */
+  .lp-hero__title .lp-hl {
+    text-shadow: none;
+  }
+  .lp-hero__title { margin-bottom: 1.8rem; }
+  .lp-hero__desc { margin-bottom: 2.4rem; }
+  /* 모바일: CTA 두 버튼을 세로로 스택 — 오른쪽 영역을 섬에게 양보 */
+  .lp-hero__ctas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .lp-hero__ctas .btn--medium {
+    height: 5rem;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+    min-width: 14rem;
+    width: auto;
+    /* 카피에 깐 text-shadow 가 버튼 글자에 상속돼 형광등처럼 빛나는 현상 차단 */
+    text-shadow: none;
+    /* 뒷배경(3D) 이 살짝 비치도록 반투명 + 블러 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .lp-hero__ctas .btn--primary {
+    background: rgba(var(--primary-rgb), 0.55);
+  }
+  .lp-hero__ctas .btn--primary:hover {
+    background: rgba(var(--primary-rgb), 0.75);
+  }
+  .lp-hero__ctas .btn--outline {
+    background: rgba(var(--background-rgb), 0.28);
+    border-color: rgba(var(--grayLv2-rgb), 0.6);
   }
   .lp-hero__meta {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.4rem 1.6rem;
     margin-top: 3.2rem;
   }
-  .lp-hero__hint { font-size: 1rem; }
+  .lp-hero__hint { display: none; }
   .lp-hero__zoom { display: none; }
   .lp-hero__tape { margin-top: 4rem; }
+}
+
+@media (max-width: 520px) {
+  .lp-hero { padding: 4rem 0 4rem; }
+  .lp-hero__badge {
+    font-size: 1.2rem;
+    padding: .7rem 1.3rem;
+    margin-bottom: 1.8rem;
+  }
+  /* 작은 모바일: CTA 한 단계 더 축소 */
+  .lp-hero__ctas .btn--medium {
+    height: 4.6rem;
+    padding: 0 1.8rem;
+    min-width: 13rem;
+    font-size: 1.4rem;
+  }
+  .lp-hero__meta { margin-top: 2.8rem; }
+  .lp-hero__meta-item .lp-num { font-size: 2.4rem; }
+  .lp-hero__tape-item { font-size: 1.8rem; padding-right: 3rem; }
 }
 
 /* ============================================================ */
@@ -480,9 +569,10 @@ body {
   border-color: rgba(var(--primary-rgb), .35);
 }
 .lp-why__emoji {
-  font-size: 3.6rem;
+  font-size: 2.8rem;
   line-height: 1;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.6rem;
+  opacity: .9;
 }
 .lp-why__card h3 {
   font-size: 1.9rem;
@@ -563,7 +653,7 @@ body {
 .lp-vibe {
   position: relative;
   padding: 10rem 0;
-  background: radial-gradient(ellipse at top left, #1a1f2e 0%, #0c1018 70%);
+  background: radial-gradient(ellipse at top left, #1c2230 0%, #10141d 70%);
   color: #fff;
   overflow: hidden;
 }
@@ -572,14 +662,18 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 75% 30%, rgba(255, 177, 60, .15), transparent 50%),
-    radial-gradient(circle at 25% 80%, rgba(43, 189, 107, .12), transparent 50%);
+    radial-gradient(circle at 75% 30%, rgba(255, 177, 60, .06), transparent 50%),
+    radial-gradient(circle at 25% 80%, rgba(43, 189, 107, .05), transparent 50%);
   pointer-events: none;
 }
 .lp-vibe__inner {
   position: relative;
   z-index: 1;
+  /* .max-width 클래스의 width: 119rem 을 100% 로 덮어 모바일에서 뷰포트 초과 방지.
+     border-box 로 두어 padding 이 max-width 안에 포함되도록 함. */
+  width: 100%;
   max-width: 119rem;
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
@@ -588,34 +682,34 @@ body {
   align-items: center;
 }
 .lp-vibe .lp-eyebrow {
-  background: rgba(255,255,255,.08);
-  color: var(--bc-accent);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.85);
 }
 .lp-vibe__desc {
   font-size: clamp(1.6rem, 1.7vw, 1.9rem);
   line-height: 1.7;
-  color: rgba(255,255,255,.75);
+  color: rgba(255,255,255,.78);
   margin-bottom: 2.4rem;
   margin-top: 1.6rem;
 }
 .lp-vibe__desc strong {
-  color: var(--bc-accent);
+  color: #fff;
   font-weight: 700;
 }
 .lp-vibe__quote {
   margin: 0;
   padding: 2rem 2.4rem;
-  border-left: 4px solid var(--bc-accent);
-  background: rgba(255,255,255,.04);
+  border-left: 3px solid rgba(255,255,255,.4);
+  background: rgba(255,255,255,.03);
   border-radius: 0 1.2rem 1.2rem 0;
   font-size: 1.6rem;
   line-height: 1.6;
-  color: rgba(255,255,255,.9);
+  color: rgba(255,255,255,.88);
 }
 .lp-vibe__quote strong {
-  color: var(--bc-green);
-  font-size: 1.8rem;
-  font-weight: 800;
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 700;
 }
 .lp-vibe__tools {
   display: grid;
@@ -631,16 +725,16 @@ body {
   gap: .4rem;
   aspect-ratio: 1;
   background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.10);
   border-radius: 1.6rem;
   text-align: center;
   padding: 1.2rem;
   transition: transform .25s, background .25s, border-color .25s;
 }
 .lp-vibe__tool:hover {
-  transform: translateY(-4px) rotate(-1deg);
-  background: rgba(255,255,255,.08);
-  border-color: rgba(255, 177, 60, .4);
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.18);
 }
 .lp-vibe__tool span {
   font-size: 2.6rem;
@@ -657,15 +751,15 @@ body {
   color: rgba(255,255,255,.5);
 }
 
-/* Main 도구 (Claude Code) 카드 — 강조 (포인트 컬러 단일톤) */
+/* Claude Code 카드 — 차분한 단일톤 */
 .lp-vibe__tool--main {
-  background: rgba(255, 177, 60, .14);
-  border-color: rgba(255, 177, 60, .55);
-  box-shadow: 0 10px 30px -10px rgba(255, 177, 60, .35);
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.14);
+  box-shadow: none;
 }
 .lp-vibe__tool--main:hover {
-  background: rgba(255, 177, 60, .22);
-  border-color: rgba(255, 177, 60, .85);
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.22);
 }
 .lp-vibe__tool--main strong {
   font-size: 1.7rem;
@@ -675,10 +769,12 @@ body {
   padding: 3.2rem 2rem;
 }
 .lp-vibe__tool--main:only-child strong {
-  font-size: 2.6rem;
+  font-size: 2.2rem;
 }
 .lp-vibe__tool--main:only-child small {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+  color: rgba(255,255,255,.55);
+  margin-top: .4rem;
 }
 .lp-vibe__tool-logo {
   display: block;
@@ -695,22 +791,10 @@ body {
   height: 3.6rem;
 }
 .lp-vibe__tool--main:only-child .lp-vibe__tool-logo {
-  width: 8rem;
-  height: 8rem;
+  width: 6.4rem;
+  height: 6.4rem;
   margin-bottom: 1.4rem;
-}
-.lp-vibe__tool-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: .3rem .7rem;
-  border-radius: 999px;
-  background: var(--bc-accent);
-  color: #1a1f2e;
-  font-size: 1rem !important;
-  font-weight: 800;
-  letter-spacing: .1em;
-  margin: 0 !important;
+  opacity: .92;
 }
 
 @media (max-width: 900px) {
@@ -751,10 +835,10 @@ body {
   margin-bottom: 1.4rem;
 }
 .lp-industry__emoji {
-  font-size: 4.4rem;
+  font-size: 3.4rem;
   line-height: 1;
   margin-bottom: 1.4rem;
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,.08));
+  opacity: .9;
 }
 .lp-industry h3 {
   font-size: 2.2rem;
@@ -1095,10 +1179,11 @@ body {
   box-shadow: 0 16px 36px -16px rgba(0, 0, 0, .12);
 }
 .lp-tracks-3__icon {
-  font-size: 3rem;
+  font-size: 2.4rem;
   line-height: 1;
   display: block;
   margin-bottom: 1.2rem;
+  opacity: .85;
 }
 .lp-tracks-3__item h4 {
   font-size: 1.8rem;
@@ -1153,12 +1238,13 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 4.6rem;
-  height: 4.6rem;
-  border-radius: 1.2rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
   background: var(--grayLv1);
-  font-size: 2.2rem;
-  margin-bottom: 1.6rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.4rem;
+  opacity: .9;
 }
 .lp-benefit strong {
   display: block;
@@ -1359,8 +1445,8 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 15% 30%, rgba(43, 189, 107, .18), transparent 45%),
-    radial-gradient(circle at 85% 70%, rgba(255, 177, 60, .14), transparent 45%);
+    radial-gradient(circle at 15% 30%, rgba(43, 189, 107, .08), transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(255, 177, 60, .06), transparent 45%);
   pointer-events: none;
 }
 .lp-cta::after {
@@ -1378,7 +1464,9 @@ body {
 .lp-cta__inner {
   position: relative;
   z-index: 1;
+  width: 100%;
   max-width: 80rem;
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -1474,10 +1562,10 @@ body {
 .lp-apply__info a { color: #fff; text-decoration: underline; }
 .lp-cta__hashtag {
   margin-top: 4rem;
-  font-size: clamp(1.6rem, 2vw, 2rem);
-  font-weight: 900;
+  font-size: clamp(1.5rem, 1.8vw, 1.8rem);
+  font-weight: 800;
   letter-spacing: .14em;
-  color: rgba(255, 225, 135, .9);
+  color: rgba(255, 255, 255, .55);
 }
 
 @media (max-width: 600px) {
@@ -1496,7 +1584,9 @@ body {
   text-align: center;
 }
 .lp-partners__inner {
+  width: 100%;
   max-width: 90rem;
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 0 2rem;
 }
